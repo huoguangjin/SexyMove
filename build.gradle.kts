@@ -1,46 +1,46 @@
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun properties(key: String) = project.findProperty(key).toString()
-
 plugins {
-    // Java support
     id("java")
-    // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.6.0"
-    // Gradle IntelliJ Plugin
     id("org.jetbrains.intellij") version "1.3.0"
-    // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.1"
-    // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+val pluginVersion: String by project
 
-// Configure project's dependencies
+val pluginSinceBuild: String by project
+val pluginUntilBuild: String by project
+
+val platformVersion: String by project
+
+val javaVersion: String by project
+
+val gradleVersion: String by project
+
+val publishToken: String by project
+
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
 }
 
-// Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
+// https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType"))
+    pluginName.set("SexyMove")
 
-    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+    version.set(platformVersion)
 }
 
-// Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
+// https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    version.set(properties("pluginVersion"))
+    version.set(pluginVersion)
     groups.set(emptyList())
 }
 
-// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
+// https://github.com/JetBrains/gradle-qodana-plugin
 qodana {
     cachePath.set(projectDir.resolve(".qodana").canonicalPath)
     reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
@@ -49,25 +49,24 @@ qodana {
 }
 
 tasks {
-    // Set the JVM compatibility versions
-    properties("javaVersion").let {
-        withType<JavaCompile> {
-            sourceCompatibility = it
-            targetCompatibility = it
-        }
-        withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = it
-        }
+    withType<JavaCompile> {
+        sourceCompatibility = javaVersion
+        targetCompatibility = javaVersion
+        options.encoding = "UTF-8"
+    }
+
+    withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = javaVersion
     }
 
     wrapper {
-        gradleVersion = properties("gradleVersion")
+        gradleVersion = gradleVersion
     }
 
     patchPluginXml {
-        version.set(properties("pluginVersion"))
-        sinceBuild.set(properties("pluginSinceBuild"))
-        untilBuild.set(properties("pluginUntilBuild"))
+        version.set(pluginVersion)
+        sinceBuild.set(pluginSinceBuild)
+        untilBuild.set(pluginUntilBuild)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
@@ -85,7 +84,7 @@ tasks {
         // Get the latest available change notes from the changelog file
         changeNotes.set(provider {
             changelog.run {
-                getOrNull(properties("pluginVersion")) ?: getLatest()
+                getOrNull(pluginVersion) ?: getLatest()
             }.toHTML()
         })
     }
@@ -107,10 +106,11 @@ tasks {
 
     publishPlugin {
         dependsOn("patchChangelog")
-        token.set(System.getenv("PUBLISH_TOKEN"))
+
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+        channels.set(listOf(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first()))
+        token.set(publishToken)
     }
 }
