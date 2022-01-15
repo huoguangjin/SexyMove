@@ -1,18 +1,12 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.huoguangjin.sexymove</id>
-    <name>SexyMove</name>
-    <vendor>huoguangjin</vendor>
+  <id>com.github.huoguangjin.sexymove</id>
+  <name>SexyMove</name>
+  <vendor email="352886006@qq.com" url="https://github.com/huoguangjin">HuoGuangjin</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.huoguangjin.sexymove.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.huoguangjin.sexymove.services.MyProjectService"/>
-    </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+  </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.huoguangjin.sexymove.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>
