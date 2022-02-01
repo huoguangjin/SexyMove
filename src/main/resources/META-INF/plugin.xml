@@ -6,6 +6,12 @@
 
   <depends>com.intellij.modules.platform</depends>
 
+  <application-components>
+    <component>
+      <implementation-class>com.github.huoguangjin.SexyMoveManager</implementation-class>
+    </component>
+  </application-components>
+
   <extensions defaultExtensionNs="com.intellij">
   </extensions>
 
