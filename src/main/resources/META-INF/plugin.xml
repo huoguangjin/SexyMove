@@ -13,6 +13,7 @@
   </application-components>
 
   <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="com.github.huoguangjin.SexyMoveSettings"/>
   </extensions>
 
   <actions>
