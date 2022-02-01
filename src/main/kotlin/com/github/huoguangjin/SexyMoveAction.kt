@@ -42,40 +42,39 @@ class SexyMoveAction : DumbAwareAction() {
   }
 
   fun dispatchKey(keyStroke: KeyStroke, editor: Editor, dataContext: DataContext): Boolean {
-    val lineShift = 12
-    val columnShift = 8
-
-    val scrollPagePercent = 0.3
-
-    val locateCaretPagePercent = 0.25F
-
     when (keyStroke.keyCode) {
       KeyEvent.VK_H -> {
+        val columnShift = settings.minScrollColumn
         EditorActionUtil.scrollRelatively(editor, 0, -columnShift, false)
         return true
       }
       KeyEvent.VK_J -> {
+        val lineShift = settings.minScrollLine
         EditorActionUtil.scrollRelatively(editor, lineShift, 0, false)
         return true
       }
       KeyEvent.VK_K -> {
+        val lineShift = settings.minScrollLine
         EditorActionUtil.scrollRelatively(editor, -lineShift, 0, false)
         return true
       }
       KeyEvent.VK_L -> {
+        val columnShift = settings.minScrollColumn
         EditorActionUtil.scrollRelatively(editor, 0, columnShift, false)
         return true
       }
 
       KeyEvent.VK_U -> {
+        val pagePercent = settings.scrollPagePercent / 100f
         val visibleArea = editor.scrollingModel.visibleArea
-        val pageShift = (visibleArea.height * scrollPagePercent / editor.lineHeight).roundToInt()
+        val pageShift = (visibleArea.height * pagePercent / editor.lineHeight).roundToInt()
         EditorActionUtil.scrollRelatively(editor, -pageShift, 0, false)
         return true
       }
       KeyEvent.VK_D -> {
+        val pagePercent = settings.scrollPagePercent / 100f
         val visibleArea = editor.scrollingModel.visibleArea
-        val pageShift = (visibleArea.height * scrollPagePercent / editor.lineHeight).roundToInt()
+        val pageShift = (visibleArea.height * pagePercent / editor.lineHeight).roundToInt()
         EditorActionUtil.scrollRelatively(editor, pageShift, 0, false)
         return true
       }
@@ -133,7 +132,8 @@ class SexyMoveAction : DumbAwareAction() {
       }
 
       KeyEvent.VK_ENTER -> {
-        locateCaret(editor, locateCaretPagePercent)
+        val pagePercent = settings.locateCaretPagePercent / 100f
+        locateCaret(editor, pagePercent)
         return true
       }
 
@@ -222,6 +222,8 @@ class SexyMoveAction : DumbAwareAction() {
 
       KeyEvent.VK_ESCAPE, // exit SexyMove
     )
+
+    private val settings = SexyMoveSettings.getInstance()
 
     fun isEnabled(editor: Editor): Boolean {
       val action = UIUtil.getClientProperty(editor.contentComponent, KEY)
