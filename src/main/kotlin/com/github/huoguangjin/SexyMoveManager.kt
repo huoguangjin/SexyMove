@@ -32,7 +32,7 @@ class SexyMoveManager : Disposable, EditorFactoryListener {
     }
 
     if (settings.activeInReadonlyFiles) {
-      return !editor.document.isWritable
+      return editor.isViewer || !editor.document.isWritable
     }
 
     return false
