@@ -43,39 +43,23 @@ class SexyMoveAction : DumbAwareAction() {
   fun dispatchKey(keyStroke: KeyStroke, editor: Editor, dataContext: DataContext): Boolean {
     when (keyStroke.keyCode) {
       KeyEvent.VK_H -> {
-        val columnShift = settings.minScrollColumn
-        EditorActionUtil.scrollRelatively(editor, 0, -columnShift, false)
-        return true
+        return executeAction("SexyScrollLeft", dataContext)
       }
       KeyEvent.VK_J -> {
-        val lineShift = settings.minScrollLine
-        EditorActionUtil.scrollRelatively(editor, lineShift, 0, false)
-        return true
+        return executeAction("SexyScrollDown", dataContext)
       }
       KeyEvent.VK_K -> {
-        val lineShift = settings.minScrollLine
-        EditorActionUtil.scrollRelatively(editor, -lineShift, 0, false)
-        return true
+        return executeAction("SexyScrollUp", dataContext)
       }
       KeyEvent.VK_L -> {
-        val columnShift = settings.minScrollColumn
-        EditorActionUtil.scrollRelatively(editor, 0, columnShift, false)
-        return true
+        return executeAction("SexyScrollRight", dataContext)
       }
 
       KeyEvent.VK_U -> {
-        val pagePercent = settings.scrollPagePercent / 100f
-        val visibleArea = editor.scrollingModel.visibleArea
-        val pageShift = (visibleArea.height * pagePercent / editor.lineHeight).roundToInt()
-        EditorActionUtil.scrollRelatively(editor, -pageShift, 0, false)
-        return true
+        return executeAction("SexyScrollPageUp", dataContext)
       }
       KeyEvent.VK_D -> {
-        val pagePercent = settings.scrollPagePercent / 100f
-        val visibleArea = editor.scrollingModel.visibleArea
-        val pageShift = (visibleArea.height * pagePercent / editor.lineHeight).roundToInt()
-        EditorActionUtil.scrollRelatively(editor, pageShift, 0, false)
-        return true
+        return executeAction("SexyScrollPageDown", dataContext)
       }
 
       in KeyEvent.VK_0..KeyEvent.VK_9 -> {
