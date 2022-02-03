@@ -18,7 +18,7 @@
   </extensions>
 
   <actions>
-    <action class="com.github.huoguangjin.SexyMoveToggleAction" id="SexyMove" text="SexyMove" description="SexyMove">
+    <action id="SexyMoveToggle" class="com.github.huoguangjin.SexyMoveToggleAction" text="Toggle SexyMove">
       <keyboard-shortcut keymap="Mac OS X" first-keystroke="meta QUOTE"/>
       <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta QUOTE"/>
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl QUOTE"/>

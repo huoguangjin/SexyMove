@@ -76,8 +76,7 @@ class SexyMoveAction : DumbAwareAction() {
       }
 
       KeyEvent.VK_I -> {
-        toggle(editor)
-        return true
+        return executeAction("SexyMoveToggle", dataContext)
       }
 
       KeyEvent.VK_B -> {
@@ -119,8 +118,7 @@ class SexyMoveAction : DumbAwareAction() {
       }
 
       KeyEvent.VK_ESCAPE -> {
-        toggle(editor)
-        return true
+        return executeAction("SexyMoveToggle", dataContext)
       }
 
       else -> return false

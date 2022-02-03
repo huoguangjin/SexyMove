@@ -22,7 +22,7 @@ class SexyMoveSettingsUI : ConfigurableUi<SexyMoveSettings> {
         spinner(1..1000).bindIntValue(settings::minScrollColumn)
       }
 
-      row("Scroll to page percent:") {
+      row("Scroll by page percent:") {
         spinner(0..100).bindIntValue(settings::scrollPagePercent)
         label("%")
       }
