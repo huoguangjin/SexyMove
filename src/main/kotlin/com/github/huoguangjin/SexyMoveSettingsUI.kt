@@ -22,13 +22,13 @@ class SexyMoveSettingsUI : ConfigurableUi<SexyMoveSettings> {
         spinner(1..1000).bindIntValue(settings::minScrollColumn)
       }
 
-      row("Scroll page percent:") {
+      row("Scroll to page percent:") {
         spinner(0..100).bindIntValue(settings::scrollPagePercent)
         label("%")
       }
 
-      row("Locate caret page percent:") {
-        spinner(0..100).bindIntValue(settings::locateCaretPagePercent)
+      row("Move caret to page percent:") {
+        spinner(0..100).bindIntValue(settings::moveCaretPagePercent)
         label("%")
       }
 

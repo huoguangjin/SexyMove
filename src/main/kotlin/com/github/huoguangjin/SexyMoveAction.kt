@@ -115,9 +115,7 @@ class SexyMoveAction : DumbAwareAction() {
       }
 
       KeyEvent.VK_ENTER -> {
-        val pagePercent = settings.locateCaretPagePercent / 100f
-        locateCaret(editor, pagePercent)
-        return true
+        return executeAction("SexyMoveCaret", dataContext)
       }
 
       KeyEvent.VK_ESCAPE -> {
@@ -127,16 +125,6 @@ class SexyMoveAction : DumbAwareAction() {
 
       else -> return false
     }
-  }
-
-  private fun locateCaret(editor: Editor, pagePercent: Float) {
-    val lineHeight = editor.lineHeight
-    val visibleArea = editor.scrollingModel.visibleArea
-    val locationY = visibleArea.y + visibleArea.height * pagePercent
-    val line = (locationY / lineHeight).roundToInt().coerceAtLeast(0)
-    val column = editor.caretModel.visualPosition.column
-    val pos = VisualPosition(line, column)
-    editor.caretModel.moveToVisualPosition(pos)
   }
 
   fun executeAction(actionId: String, dataContext: DataContext): Boolean {
@@ -191,7 +179,7 @@ class SexyMoveAction : DumbAwareAction() {
 
       KeyEvent.VK_BACK_SPACE, // delete
       KeyEvent.VK_TAB, // repeat last action
-      KeyEvent.VK_ENTER, // locate caret
+      KeyEvent.VK_ENTER, // move caret
 
       KeyEvent.VK_ESCAPE, // exit SexyMove
     )

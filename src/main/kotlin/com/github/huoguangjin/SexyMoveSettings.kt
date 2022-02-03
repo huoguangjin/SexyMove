@@ -11,7 +11,7 @@ data class SexyMoveSettings(
   var minScrollLine: Int = 12,
   var minScrollColumn: Int = 16,
   var scrollPagePercent: Int = 50,
-  var locateCaretPagePercent: Int = 25,
+  var moveCaretPagePercent: Int = 25,
   var activeInReadonlyFiles: Boolean = true,
   var activeAlways: Boolean = false,
 ) : PersistentStateComponent<SexyMoveSettings> {

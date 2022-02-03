@@ -23,11 +23,15 @@
       <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="meta QUOTE"/>
       <keyboard-shortcut keymap="$default" first-keystroke="ctrl QUOTE"/>
     </action>
+
     <action id="SexyScrollRight" class="com.github.huoguangjin.SexyScrollRightAction"/>
     <action id="SexyScrollLeft" class="com.github.huoguangjin.SexyScrollLeftAction"/>
     <action id="SexyScrollDown" class="com.github.huoguangjin.SexyScrollDownAction"/>
     <action id="SexyScrollUp" class="com.github.huoguangjin.SexyScrollUpAction"/>
+
     <action id="SexyScrollPageDown" class="com.github.huoguangjin.SexyScrollPageDownAction"/>
     <action id="SexyScrollPageUp" class="com.github.huoguangjin.SexyScrollPageUpAction"/>
+
+    <action id="SexyMoveCaret" class="com.github.huoguangjin.SexyMoveCaretAction"/>
   </actions>
 </idea-plugin>
