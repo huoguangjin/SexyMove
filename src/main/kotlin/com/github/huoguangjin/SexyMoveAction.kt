@@ -5,7 +5,6 @@ import com.intellij.openapi.actionSystem.ex.ActionUtil
 import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.VisualPosition
-import com.intellij.openapi.editor.actionSystem.*
 import com.intellij.openapi.editor.actions.EditorActionUtil
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.util.Key
@@ -98,32 +97,32 @@ class SexyMoveAction : DumbAwareAction() {
       }
 
       KeyEvent.VK_B -> {
-        return executeAction("EditorPreviousWord", editor, dataContext)
+        return executeAction("EditorPreviousWord", dataContext)
       }
       KeyEvent.VK_E -> {
-        return executeAction("EditorNextWord", editor, dataContext)
+        return executeAction("EditorNextWord", dataContext)
       }
 
       KeyEvent.VK_Z -> {
-        return executeAction("EditorScrollToCenter", editor, dataContext)
+        return executeAction("EditorScrollToCenter", dataContext)
       }
 
       KeyEvent.VK_A -> {
-        return executeAction("PreviousTab", editor, dataContext)
+        return executeAction("PreviousTab", dataContext)
       }
       KeyEvent.VK_S -> {
-        return executeAction("NextTab", editor, dataContext)
+        return executeAction("NextTab", dataContext)
       }
 
       KeyEvent.VK_OPEN_BRACKET -> {
-        return executeAction("Back", editor, dataContext)
+        return executeAction("Back", dataContext)
       }
       KeyEvent.VK_CLOSE_BRACKET -> {
-        return executeAction("Forward", editor, dataContext)
+        return executeAction("Forward", dataContext)
       }
 
       KeyEvent.VK_SLASH -> {
-        return executeAction("Find", editor, dataContext)
+        return executeAction("Find", dataContext)
       }
 
       KeyEvent.VK_TAB -> {
@@ -156,19 +155,9 @@ class SexyMoveAction : DumbAwareAction() {
     editor.caretModel.moveToVisualPosition(pos)
   }
 
-  fun executeAction(actionId: String, editor: Editor, dataContext: DataContext): Boolean {
+  fun executeAction(actionId: String, dataContext: DataContext): Boolean {
     val action = ActionManager.getInstance().getAction(actionId) ?: return false
-
-    val context = CaretSpecificDataContext(dataContext, editor.caretModel.currentCaret)
-    val event = AnActionEvent(
-      null,
-      context,
-      ActionPlaces.KEYBOARD_SHORTCUT,
-      action.templatePresentation,
-      ActionManager.getInstance(),
-      0
-    )
-
+    val event = AnActionEvent.createFromInputEvent(null, ActionPlaces.KEYBOARD_SHORTCUT, null, dataContext)
     ActionUtil.performActionDumbAwareWithCallbacks(action, event)
     return true
   }
