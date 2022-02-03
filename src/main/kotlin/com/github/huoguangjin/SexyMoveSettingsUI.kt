@@ -6,6 +6,7 @@ import com.intellij.ui.dsl.builder.bindIntValue
 import com.intellij.ui.dsl.builder.bindSelected
 import com.intellij.ui.dsl.builder.panel
 import javax.swing.JComponent
+import kotlin.math.roundToInt
 
 class SexyMoveSettingsUI : ConfigurableUi<SexyMoveSettings> {
 
@@ -23,12 +24,16 @@ class SexyMoveSettingsUI : ConfigurableUi<SexyMoveSettings> {
       }
 
       row("Scroll by page percent:") {
-        spinner(0..100).bindIntValue(settings::scrollPagePercent)
+        spinner(0..1000).bindIntValue(
+          { (settings.scrollPagePercent * 100).roundToInt() },
+          { settings.scrollPagePercent = it / 100f })
         label("%")
       }
 
       row("Move caret to page percent:") {
-        spinner(0..100).bindIntValue(settings::moveCaretPagePercent)
+        spinner(0..1000).bindIntValue(
+          { (settings.moveCaretPagePercent * 100).roundToInt() },
+          { settings.moveCaretPagePercent = it / 100f })
         label("%")
       }
 

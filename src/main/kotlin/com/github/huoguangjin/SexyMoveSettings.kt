@@ -10,8 +10,8 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 data class SexyMoveSettings(
   var minScrollLine: Int = 12,
   var minScrollColumn: Int = 16,
-  var scrollPagePercent: Int = 50,
-  var moveCaretPagePercent: Int = 25,
+  var scrollPagePercent: Float = 0.33F,
+  var moveCaretPagePercent: Float = 0.33F,
   var activeInReadonlyFiles: Boolean = true,
   var activeAlways: Boolean = false,
 ) : PersistentStateComponent<SexyMoveSettings> {

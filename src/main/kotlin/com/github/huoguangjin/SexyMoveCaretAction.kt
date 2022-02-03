@@ -15,7 +15,7 @@ class SexyMoveCaretAction : InactiveEditorAction(Handler()) {
     private val settings = SexyMoveSettings.getInstance()
 
     override fun doExecute(editor: Editor, caret: Caret?, dataContext: DataContext?) {
-      val pagePercent = settings.moveCaretPagePercent / 100f
+      val pagePercent = settings.moveCaretPagePercent
       val visibleArea = editor.scrollingModel.visibleArea
       val locationY = visibleArea.y + visibleArea.height * pagePercent
       val lineHeight = editor.lineHeight

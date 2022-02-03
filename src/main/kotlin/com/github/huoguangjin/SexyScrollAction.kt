@@ -43,7 +43,7 @@ class SexyScrollPageDownHandler(private val multiplier: Int) : EditorActionHandl
   private val settings = SexyMoveSettings.getInstance()
 
   override fun doExecute(editor: Editor, caret: Caret?, dataContext: DataContext?) {
-    val pagePercent = multiplier * settings.scrollPagePercent / 100f
+    val pagePercent = multiplier * settings.scrollPagePercent
     val visibleArea = editor.scrollingModel.visibleArea
     val pageShift = (visibleArea.height * pagePercent / editor.lineHeight).roundToInt()
     EditorActionUtil.scrollRelatively(editor, pageShift, 0, false)
