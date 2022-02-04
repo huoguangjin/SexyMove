@@ -24,165 +24,55 @@ class SexyMoveAction : DumbAwareAction() {
     UIUtil.putClientProperty(editor.contentComponent, ActionUtil.ALLOW_PlAIN_LETTER_SHORTCUTS, enable)
 
     if (enable) {
-      registerCustomShortcutSet(SHORTCUT_SET, editor.contentComponent)
+      val shortcutSet = CustomShortcutSet(*keyCodeToActionId.keys.toTypedArray())
+      registerCustomShortcutSet(shortcutSet, editor.contentComponent)
     } else {
       unregisterCustomShortcutSet(editor.contentComponent)
     }
   }
 
   override fun actionPerformed(e: AnActionEvent) {
-    val editor = e.getRequiredData(CommonDataKeys.EDITOR)
     val inputEvent = e.inputEvent
     val keyCode = (inputEvent as KeyEvent).keyCode
-    val keyStroke = KeyStroke.getKeyStroke(keyCode, inputEvent.modifiersEx)
-    LOG.info("accept key: $editor $inputEvent")
 
-    dispatchKey(keyStroke, editor, e.dataContext)
-  }
+    val actionId = keyCodeToActionId[keyCode] ?: return
+    val action = ActionManager.getInstance().getAction(actionId) ?: return
 
-  fun dispatchKey(keyStroke: KeyStroke, editor: Editor, dataContext: DataContext): Boolean {
-    when (keyStroke.keyCode) {
-      KeyEvent.VK_H -> {
-        return executeAction("SexyScrollLeft", dataContext)
-      }
-      KeyEvent.VK_J -> {
-        return executeAction("SexyScrollDown", dataContext)
-      }
-      KeyEvent.VK_K -> {
-        return executeAction("SexyScrollUp", dataContext)
-      }
-      KeyEvent.VK_L -> {
-        return executeAction("SexyScrollRight", dataContext)
-      }
-
-      KeyEvent.VK_U -> {
-        return executeAction("SexyScrollPageUp", dataContext)
-      }
-      KeyEvent.VK_D -> {
-        return executeAction("SexyScrollPageDown", dataContext)
-      }
-
-      in KeyEvent.VK_0..KeyEvent.VK_9 -> {
-        // TODO: 2022/1/16 record number
-        return true
-      }
-      KeyEvent.VK_BACK_SPACE -> {
-        // TODO: 2022/1/16 delete last typed number
-        return true
-      }
-      KeyEvent.VK_G -> {
-        // TODO: 2022/1/16 go to line
-        return true
-      }
-
-      KeyEvent.VK_I -> {
-        return executeAction("SexyMoveToggle", dataContext)
-      }
-
-      KeyEvent.VK_B -> {
-        return executeAction("EditorPreviousWord", dataContext)
-      }
-      KeyEvent.VK_E -> {
-        return executeAction("EditorNextWord", dataContext)
-      }
-
-      KeyEvent.VK_Z -> {
-        return executeAction("EditorScrollToCenter", dataContext)
-      }
-
-      KeyEvent.VK_A -> {
-        return executeAction("PreviousTab", dataContext)
-      }
-      KeyEvent.VK_S -> {
-        return executeAction("NextTab", dataContext)
-      }
-
-      KeyEvent.VK_OPEN_BRACKET -> {
-        return executeAction("Back", dataContext)
-      }
-      KeyEvent.VK_CLOSE_BRACKET -> {
-        return executeAction("Forward", dataContext)
-      }
-
-      KeyEvent.VK_SLASH -> {
-        return executeAction("Find", dataContext)
-      }
-
-      KeyEvent.VK_TAB -> {
-        // TODO: 2022/1/16 repeat last action
-        return true
-      }
-
-      KeyEvent.VK_ENTER -> {
-        return executeAction("SexyMoveCaret", dataContext)
-      }
-
-      KeyEvent.VK_ESCAPE -> {
-        return executeAction("SexyMoveToggle", dataContext)
-      }
-
-      else -> return false
-    }
-  }
-
-  fun executeAction(actionId: String, dataContext: DataContext): Boolean {
-    val action = ActionManager.getInstance().getAction(actionId) ?: return false
-    val event = AnActionEvent.createFromInputEvent(null, ActionPlaces.KEYBOARD_SHORTCUT, null, dataContext)
-    ActionUtil.performActionDumbAwareWithCallbacks(action, event)
-    return true
+    ActionUtil.performActionDumbAwareWithCallbacks(action, e)
   }
 
   companion object {
 
-    private val LOG = logger<SexyMoveAction>()
-
     private val KEY: Key<SexyMoveAction> = Key.create("SexyMoveAction")
 
-    private val SHORTCUT_SET = CustomShortcutSet(
-      KeyEvent.VK_0,
-      KeyEvent.VK_1,
-      KeyEvent.VK_2,
-      KeyEvent.VK_3,
-      KeyEvent.VK_4,
-      KeyEvent.VK_5,
-      KeyEvent.VK_6,
-      KeyEvent.VK_7,
-      KeyEvent.VK_8,
-      KeyEvent.VK_9,
+    private val keyCodeToActionId = mapOf(
+      KeyEvent.VK_H to "SexyScrollLeft",
+      KeyEvent.VK_J to "SexyScrollDown",
+      KeyEvent.VK_K to "SexyScrollUp",
+      KeyEvent.VK_L to "SexyScrollRight",
 
-      KeyEvent.VK_G, // go to line
+      KeyEvent.VK_U to "SexyScrollPageUp",
+      KeyEvent.VK_D to "SexyScrollPageDown",
 
-      KeyEvent.VK_H, // scroll left
-      KeyEvent.VK_J, // scroll down
-      KeyEvent.VK_K, // scroll up
-      KeyEvent.VK_L, // scroll right
+      KeyEvent.VK_I to "SexyMoveToggle",
 
-      KeyEvent.VK_I, // exit SexyMove
+      KeyEvent.VK_B to "EditorPreviousWord",
+      KeyEvent.VK_E to "EditorNextWord",
 
-      KeyEvent.VK_U, // scroll page up
-      KeyEvent.VK_D, // scroll page down
+      KeyEvent.VK_Z to "EditorScrollToCenter",
 
-      KeyEvent.VK_A, // action: PreviousTab
-      KeyEvent.VK_S, // action: NextTab
+      KeyEvent.VK_A to "PreviousTab",
+      KeyEvent.VK_S to "NextTab",
 
-      KeyEvent.VK_B, // action: EditorPreviousWord
-      KeyEvent.VK_E, // action: EditorNextWord
+      KeyEvent.VK_OPEN_BRACKET to "Back",
+      KeyEvent.VK_CLOSE_BRACKET to "Forward",
 
-      KeyEvent.VK_Z, // action: EditorScrollToCenter
+      KeyEvent.VK_SLASH to "Find",
 
-      KeyEvent.VK_OPEN_BRACKET, // action: Back
-      KeyEvent.VK_CLOSE_BRACKET, // action: Forward
+      KeyEvent.VK_ENTER to "SexyMoveCaret",
 
-      KeyEvent.VK_SLASH, // action: Find
-
-      KeyEvent.VK_BACK_SPACE, // delete
-      KeyEvent.VK_TAB, // repeat last action
-      KeyEvent.VK_ENTER, // move caret
-
-      KeyEvent.VK_ESCAPE, // exit SexyMove
+      KeyEvent.VK_ESCAPE to "SexyMoveToggle",
     )
-
-    private val settings = SexyMoveSettings.getInstance()
 
     fun isEnabled(editor: Editor): Boolean {
       val action = UIUtil.getClientProperty(editor.contentComponent, KEY)
