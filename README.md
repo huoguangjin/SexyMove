@@ -15,11 +15,18 @@
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` but much simpler).
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
-
-To keep everything working, do not remove `<!-- ... -->` sections. 
+- <kbd>Ctrl</kbd>+<kbd>'</kbd>(<kbd>⌘</kbd>+<kbd>'</kbd> on mac): Enter SexyMove mode
+- <kbd>Escape</kbd> or <kbd>i</kbd>: Exit SexyMove mode
+- <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: Scroll left/down/up/right
+- <kbd>u</kbd>/<kbd>d</kbd>: Scroll page up/down
+- <kbd>b</kbd>/<kbd>e</kbd>: Move the caret to previous/next word
+- <kbd>[</kbd>/<kbd>]</kbd>: Navigate to previous/next location
+- <kbd>a</kbd>/<kbd>s</kbd>: Switch to left/right tab
+- <kbd>z</kbd>: Scroll to the caret
+- <kbd>/</kbd>: Find in current file
+- <kbd>Enter</kbd>: Move the caret to center
 <!-- Plugin description end -->
 
 ## Installation
