@@ -9,7 +9,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 @State(name = "SexyMove", storages = [Storage("SexyMove.xml")])
 data class SexyMoveSettings(
   var minScrollLine: Int = 12,
-  var minScrollColumn: Int = 16,
+  var minScrollColumn: Int = 20,
   var scrollPagePercent: Float = 0.33F,
   var moveCaretPagePercent: Float = 0.33F,
   var activeInReadonlyFiles: Boolean = true,
