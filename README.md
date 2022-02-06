@@ -1,18 +1,10 @@
 # SexyMove
 
 ![Build](https://github.com/huoguangjin/SexyMove/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/18554.svg)](https://plugins.jetbrains.com/plugin/18554)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/18554.svg)](https://plugins.jetbrains.com/plugin/18554)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Verify the [pluginGroup](/gradle.properties), [plugin ID](/src/main/resources/META-INF/plugin.xml) and [sources package](/src/main/kotlin).
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the Plugin ID in the above README badges.
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+> Vim is great! But too much for the IDE.
 
 <!-- Plugin description -->
 Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` but much simpler).
@@ -32,17 +24,35 @@ Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` bu
 ## Installation
 
 - Using IDE built-in plugin system:
-  
+
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "SexyMove"</kbd> >
   <kbd>Install Plugin</kbd>
-  
+
 - Manually:
 
   Download the [latest release](https://github.com/huoguangjin/SexyMove/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
----
-Plugin based on the [IntelliJ Platform Plugin Template][template].
+## Settings
 
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
+![settings](assets/settings.jpg)
+
+
+## Build & Run
+
+- JDK 11 required, you can set [`org.gradle.java.home`](https://docs.gradle.org/current/userguide/build_environment.html) in `gradle.properties`.
+
+- How to run: `./gradlew runIde`. (see [predefined run/debug configurations](https://github.com/JetBrains/intellij-platform-plugin-template#predefined-rundebug-configurations) also)
+
+- How to build: `./gradlew buildPlugin`.
+
+
+## FAQ
+
+- Why is it called "SexyMove"?
+  Sexy Move is a [Rubik's Cube term](https://www.speedsolving.com/wiki/index.php/Sexy_Move) coined by Arnaud van Galen.
+  It is one of the fastest move that you can perform on a cube.
+  ([The origin of Sexy Move](https://youtu.be/EEt3NoW-lhs))
+  > "...why do they call it the Sexy Move because it's really easy to perform, and it can be extremely fast!"
+
