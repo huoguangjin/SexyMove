@@ -1,4 +1,4 @@
-package com.github.huoguangjin;
+package com.github.huoguangjin
 
 import com.intellij.openapi.options.ConfigurableUi
 import com.intellij.openapi.ui.DialogPanel

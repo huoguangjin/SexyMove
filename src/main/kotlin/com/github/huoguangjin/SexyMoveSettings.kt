@@ -1,4 +1,4 @@
-package com.github.huoguangjin;
+package com.github.huoguangjin
 
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent

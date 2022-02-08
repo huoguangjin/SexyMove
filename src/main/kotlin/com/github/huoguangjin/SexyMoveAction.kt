@@ -1,17 +1,14 @@
 package com.github.huoguangjin
 
-import com.intellij.openapi.actionSystem.*
+import com.intellij.openapi.actionSystem.ActionManager
+import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.actionSystem.CustomShortcutSet
 import com.intellij.openapi.actionSystem.ex.ActionUtil
-import com.intellij.openapi.diagnostic.logger
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.editor.VisualPosition
-import com.intellij.openapi.editor.actions.EditorActionUtil
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.util.Key
 import com.intellij.util.ui.UIUtil
 import java.awt.event.KeyEvent
-import javax.swing.KeyStroke
-import kotlin.math.roundToInt
 
 class SexyMoveAction : DumbAwareAction() {
 
