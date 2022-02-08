@@ -21,6 +21,11 @@ Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` bu
 - <kbd>Enter</kbd>: Move the caret to center
 <!-- Plugin description end -->
 
+
+video preview:
+
+https://user-images.githubusercontent.com/22366182/152981434-90b47d65-6432-4d10-8d5f-fa4e0e2ece55.mp4
+
 ## Installation
 
 - Using IDE built-in plugin system:
@@ -51,6 +56,7 @@ Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` bu
 ## FAQ
 
 - Why is it called "SexyMove"?
+
   Sexy Move is a [Rubik's Cube term](https://www.speedsolving.com/wiki/index.php/Sexy_Move) coined by Arnaud van Galen.
   It is one of the fastest move that you can perform on a cube.
   ([The origin of Sexy Move](https://youtu.be/EEt3NoW-lhs))
