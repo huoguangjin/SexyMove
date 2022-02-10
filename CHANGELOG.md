@@ -8,6 +8,10 @@
 ### Changed
 - support dynamic reloading
 
+## [1.0.1]
+### Changed
+- support dynamic reloading
+
 ## [1.0.0]
 ### Added
 - Add SexyMove actions and key mapping
