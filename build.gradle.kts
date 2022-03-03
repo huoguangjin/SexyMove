@@ -12,7 +12,6 @@ plugins {
 val pluginVersion: String by project
 
 val pluginSinceBuild: String by project
-val pluginUntilBuild: String by project
 
 val platformVersion: String by project
 
@@ -30,6 +29,9 @@ intellij {
     pluginName.set("SexyMove")
 
     version.set(platformVersion)
+
+    // https://github.com/JetBrains/gradle-intellij-plugin#building-properties
+    updateSinceUntilBuild.set(false)
 }
 
 // https://github.com/JetBrains/gradle-changelog-plugin
@@ -64,7 +66,6 @@ tasks {
     patchPluginXml {
         version.set(pluginVersion)
         sinceBuild.set(pluginSinceBuild)
-        untilBuild.set(pluginUntilBuild)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
