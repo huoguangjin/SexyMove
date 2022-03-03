@@ -26,8 +26,7 @@ repositories {
 
 // https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
-    pluginName.set("SexyMove")
-
+    pluginName.set(project.name)
     version.set(platformVersion)
 
     // https://github.com/JetBrains/gradle-intellij-plugin#building-properties
