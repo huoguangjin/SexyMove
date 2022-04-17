@@ -3,6 +3,8 @@
 # SexyMove Changelog
 
 ## [Unreleased]
+
+## [1.0.2]
 ### Changed
 - update for IDE 2022.1
 
