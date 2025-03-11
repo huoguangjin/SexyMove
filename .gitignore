@@ -1,4 +1,22 @@
-.gradle
-.idea
+# Intellij
+.idea/
+*.iml
+
+# Production
+build/
+out/
+*.class
+MultiHighlight-*.jar
+MultiHighlight-*.zip
+
+# Gradle
+.gradle/
+gradle.properties
+
+# System Cache
+.DS_Store
+thumbs.db
+$RECYCLE.BIN/
+
 .qodana
-build
+.intellijPlatform
