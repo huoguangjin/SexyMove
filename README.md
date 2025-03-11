@@ -28,14 +28,21 @@ https://user-images.githubusercontent.com/22366182/152981434-90b47d65-6432-4d10-
 
 ## Installation
 
-- Using IDE built-in plugin system:
+- Using the IDE built-in plugin system:
 
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "SexyMove"</kbd> >
-  <kbd>Install Plugin</kbd>
+  <kbd>Install</kbd>
+
+- Using JetBrains Marketplace:
+
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
 
-  Download the [latest release](https://github.com/huoguangjin/SexyMove/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/huoguangjin/plugin-template/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
@@ -46,7 +53,8 @@ https://user-images.githubusercontent.com/22366182/152981434-90b47d65-6432-4d10-
 
 ## Build & Run
 
-- JDK 11 required, you can set [`org.gradle.java.home`](https://docs.gradle.org/current/userguide/build_environment.html) in `gradle.properties`.
+- JDK 21 is required, set `JAVA_HOME` environment variable, or set **Build, Execution, Deployment | Build Tools | Gradle | Gradle JVM** in IDEA settings.
+  > [Build Number Ranges | IntelliJ Platform Plugin SDK](https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#platformVersions)
 
 - How to run: `./gradlew runIde`. (see [predefined run/debug configurations](https://github.com/JetBrains/intellij-platform-plugin-template#predefined-rundebug-configurations) also)
 
