@@ -12,7 +12,6 @@ class SexyMoveSettingsUI : ConfigurableUi<SexyMoveSettings> {
 
   private val settings = SexyMoveSettings.getInstance()
 
-  @Suppress("UnstableApiUsage")
   private val ui: DialogPanel by lazy(LazyThreadSafetyMode.NONE) {
     panel {
       row("Min scroll line:") {

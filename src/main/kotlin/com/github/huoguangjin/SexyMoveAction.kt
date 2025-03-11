@@ -7,7 +7,6 @@ import com.intellij.openapi.actionSystem.ex.ActionUtil
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.DumbAwareAction
 import com.intellij.openapi.util.Key
-import com.intellij.util.ui.UIUtil
 import java.awt.event.KeyEvent
 
 class SexyMoveAction : DumbAwareAction() {
@@ -18,7 +17,8 @@ class SexyMoveAction : DumbAwareAction() {
     enable = !enable
 
     editor.settings.isBlockCursor = enable
-    UIUtil.putClientProperty(editor.contentComponent, ActionUtil.ALLOW_PlAIN_LETTER_SHORTCUTS, enable)
+      // see com.intellij.openapi.keymap.impl.IdeKeyEventDispatcher.dispatchKeyEvent
+      editor.contentComponent.putClientProperty(ActionUtil.ALLOW_PlAIN_LETTER_SHORTCUTS, enable)
 
     if (enable) {
       val shortcutSet = CustomShortcutSet(*keyCodeToActionId.keys.toTypedArray())
@@ -72,15 +72,15 @@ class SexyMoveAction : DumbAwareAction() {
     )
 
     fun isEnabled(editor: Editor): Boolean {
-      val action = UIUtil.getClientProperty(editor.contentComponent, KEY)
-      return action?.enable ?: false
+      val action = editor.getUserData(KEY) ?: return false
+      return action.enable
     }
 
     fun toggle(editor: Editor) {
-      var action = UIUtil.getClientProperty(editor.contentComponent, KEY)
+      var action = editor.getUserData(KEY)
       if (action == null) {
         action = SexyMoveAction()
-        UIUtil.putClientProperty(editor.contentComponent, KEY, action)
+        editor.putUserData(KEY, action)
       }
 
       action.toggle(editor)
