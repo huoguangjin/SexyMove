@@ -1,5 +1,6 @@
 package com.github.huoguangjin
 
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.project.DumbAwareToggleAction
@@ -20,4 +21,6 @@ class SexyMoveToggleAction : DumbAwareToggleAction() {
     val editor = e.getData(CommonDataKeys.EDITOR)
     e.presentation.isEnabled = editor != null && !editor.isOneLineMode
   }
+
+  override fun getActionUpdateThread() = ActionUpdateThread.EDT
 }

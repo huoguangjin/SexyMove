@@ -8,7 +8,9 @@
 
   <extensions defaultExtensionNs="com.intellij">
     <applicationService serviceImplementation="com.github.huoguangjin.SexyMoveSettings"/>
-    <applicationConfigurable id="SexyMove" instance="com.github.huoguangjin.SexyMoveConfigurable"/>
+    <applicationConfigurable id="SexyMove"
+                             displayName="SexyMove"
+                             instance="com.github.huoguangjin.SexyMoveConfigurable"/>
 
     <editorFactoryListener implementation="com.github.huoguangjin.SexyMoveManager"/>
   </extensions>
