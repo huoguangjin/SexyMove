@@ -1,9 +1,9 @@
 package com.github.huoguangjin
 
-import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State
 import com.intellij.openapi.components.Storage
+import com.intellij.openapi.components.service
 import com.intellij.util.xmlb.XmlSerializerUtil
 
 @State(name = "SexyMove", storages = [Storage("SexyMove.xml")])
@@ -23,8 +23,6 @@ data class SexyMoveSettings(
   }
 
   companion object {
-    fun getInstance(): SexyMoveSettings {
-      return ApplicationManager.getApplication().getService(SexyMoveSettings::class.java)
-    }
+    fun getInstance(): SexyMoveSettings = service()
   }
 }
