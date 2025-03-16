@@ -2,22 +2,32 @@
 
 # SexyMove Changelog
 
-## [Unreleased]
+## Unreleased
 
-## [1.0.2]
-### Changed
-- update for IDE 2022.1
-
-## [1.0.1]
-### Changed
-- support dynamic reloading
-
-## [1.0.0]
 ### Added
-- Add SexyMove actions and key mapping
-- Add Settings UI for SexyMove
-- First release
 
-## [0.0.1]
+- Don't toggle SexyMoveAction automatically in the online mode editor.
+
+### Fixed
+
+- Fix compatibility issue with IDE 2024.1.
+
+## 1.0.2 - 2022-04-17
+
+### Changed
+
+- Update for IDE 2022.1.
+
+## 1.0.1 - 2022-02-09
+
+### Changed
+
+- Support dynamic reloading.
+
+## 1.0.0 - 2022-02-07
+
 ### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+- Add SexyMove actions and key mapping.
+- Add Settings UI for SexyMove.
+- First release.
