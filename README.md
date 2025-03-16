@@ -14,11 +14,12 @@ Toggle SexyMove mode to scroll and move your editor in a sexy way (like `Vim` bu
 - <kbd>h</kbd>/<kbd>j</kbd>/<kbd>k</kbd>/<kbd>l</kbd>: Scroll left/down/up/right
 - <kbd>u</kbd>/<kbd>d</kbd>: Scroll page up/down
 - <kbd>b</kbd>/<kbd>e</kbd>: Move the caret to previous/next word
-- <kbd>[</kbd>/<kbd>]</kbd>: Navigate to previous/next location
+- <kbd>\[</kbd>/<kbd>\]</kbd>: Navigate to previous/next location
 - <kbd>a</kbd>/<kbd>s</kbd>: Switch to left/right tab
 - <kbd>z</kbd>: Scroll to the caret
 - <kbd>/</kbd>: Find in current file
 - <kbd>Enter</kbd>: Move the caret to center
+
 <!-- Plugin description end -->
 
 
@@ -45,21 +46,20 @@ https://user-images.githubusercontent.com/22366182/152981434-90b47d65-6432-4d10-
   Download the [latest release](https://github.com/huoguangjin/plugin-template/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
-
 ## Settings
 
 ![settings](assets/settings.jpg)
-
 
 ## Build & Run
 
 - JDK 21 is required, set `JAVA_HOME` environment variable, or set **Build, Execution, Deployment | Build Tools | Gradle | Gradle JVM** in IDEA settings.
   > [Build Number Ranges | IntelliJ Platform Plugin SDK](https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#platformVersions)
 
-- How to run: `./gradlew runIde`. (see [predefined run/debug configurations](https://github.com/JetBrains/intellij-platform-plugin-template#predefined-rundebug-configurations) also)
+- To run IDE with plugin: `./gradlew runIde`. (
+  see [predefined run/debug configurations](https://github.com/JetBrains/intellij-platform-plugin-template#predefined-rundebug-configurations)
+  also)
 
-- How to build: `./gradlew buildPlugin`.
-
+- To build plugin distribution: `./gradlew buildPlugin`.
 
 ## FAQ
 
