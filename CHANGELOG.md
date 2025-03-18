@@ -4,6 +4,8 @@
 
 ## Unreleased
 
+## 2.0.0 - 2025-03-18
+
 ### Added
 
 - Don't toggle SexyMoveAction automatically in the online mode editor.
